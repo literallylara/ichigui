@@ -1,0 +1,14 @@
+{
+	"presets":
+	[
+		[
+			"@babel/preset-env",
+			{
+				"targets": "> 1%, last 2 versions, Firefox ESR, not dead",
+				"useBuiltIns": "usage",
+				"modules": false,
+				"corejs": 3
+			}
+		]
+	]
+}

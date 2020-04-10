@@ -1,0 +1,110 @@
+* { margin: 0;  padding: 0; box-sizing: border-box }
+
+body
+{
+    width: 960px;
+    text-align: center;
+
+    font-family: Helvetica, Arial, sans-serif;
+
+    padding: 1em;
+    margin: 0 auto;
+}
+
+
+todos
+{
+    width: 600px;
+    margin: 0 auto;
+    display: block;
+}
+
+todos > h1
+{
+    font-size: 4em;
+    margin-bottom: .5em;
+}
+
+todos > input[type=text]
+{
+    width: 100%;
+    padding: 1em;
+    border: 1px solid #999;
+    border-radius: 3px;
+}
+
+todos > ul
+{
+    list-style: none;
+    width: calc(100% - 1em);
+    margin: 0 auto;
+}
+
+todos > ul > li
+{
+    display: block;
+    position: relative;
+}
+
+todos > ul > li > label
+{
+    width: 1em;
+    height: 1em;
+
+    position: absolute;
+    top: .5em;
+    left: .5em;
+    
+    border: 1px solid #000;
+    border-radius: 3px;
+}
+
+todos > ul > li > label > input[type="checkbox"]
+{
+    width: 100%;
+    display: none;
+}
+
+todos > ul > li > label > span
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    content: " ";
+    
+    font-size: .8em;
+    transform: translate(-50%,-50%);
+}
+
+todos > ul > li > label > span::before
+{
+    content: " "
+}
+
+todos > ul > li > label > input[type="checkbox"]:checked + span::before
+{
+    content: "✓";
+}
+
+todos > ul > li > input[type=text]
+{
+    width: 100%;
+    padding: .5em;
+    padding-left: 2.5em;
+    border-color: #999;
+    border-style: solid;
+    border-width: 1px;
+
+    border-top-width: 0;
+}
+
+todos > ul > li:first-child > input[type=text]
+{
+    /* border-radius: 3px 3px 0 0;
+    border-top-width: 1px; */
+}
+
+todos > ul > li:last-child > input[type=text]
+{
+    border-radius: 0 0 3px 3px;
+}

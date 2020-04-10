@@ -1,0 +1,41 @@
+{
+  "name": "yarc-js",
+  "version": "0.0.1",
+  "description": "Yet another react clone.",
+  "main": "lib/index.js",
+  "browser": "dist/gui.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/literallylara/yarc-js.git"
+  },
+  "keywords": [
+    "gui",
+    "framework",
+    "components",
+    "virtual-dom",
+    "vdom",
+    "diff",
+    "diffing",
+    "vnode"
+  ],
+  "author": "@literallylara",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/literallylara/yarc-js/issues"
+  },
+  "homepage": "https://github.com/literallylara/yarc-js#readme",
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/runtime": "^7.8.3",
+    "core-js": "^3.6.4",
+    "eslint": "^6.8.0",
+    "@rollup/plugin-commonjs": "^11.0.1",
+    "@rollup/plugin-node-resolve": "^7.0.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-babel-minify": "^9.1.1"
+  }
+}
