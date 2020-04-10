@@ -3,6 +3,14 @@ import resolve from "@rollup/plugin-node-resolve"
 import commonjs from "@rollup/plugin-commonjs"
 import minify from "rollup-plugin-babel-minify"
 
+import pkg from "./package.json"
+
+const banner = `/**!
+ * ${pkg.name} v${pkg.version}
+ * License: ${pkg.license}
+ * ${pkg.homepage}
+ */`
+
 export default
 {
     input: "./lib/index.js",
@@ -11,7 +19,8 @@ export default
     {
         file: "./dist/yarc.min.js",
         format: "iife",
-        name: "GUI"
+        name: "YARC",
+        banner
     },
 
     plugins:
@@ -19,6 +28,6 @@ export default
         babel(),
         resolve(),
         commonjs(),
-        minify({ comments: false, sourceMap: false })
+        minify({ comments: false })
     ]
 }
