@@ -9,7 +9,7 @@ export default
     
     output:
     {
-        file: "./dist/gui.min.js",
+        file: "./dist/yarc.min.js",
         format: "iife",
         name: "GUI"
     },
