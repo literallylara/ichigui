@@ -5,6 +5,7 @@
     },
     "extends": "eslint:recommended",
     "globals": {
+        "YARC": "readonly"
     },
     "parserOptions": {
         "ecmaVersion": 2018,
