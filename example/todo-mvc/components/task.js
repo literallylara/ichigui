@@ -12,14 +12,29 @@ export default class extends YARC.Component
         this.state.value = props.value
     }
 
-    onChange(e)
+    onInput(e)
+    {
+        this.setState("value", e.target.value)
+        
+        if (this.props.onInput)
+        {
+            this.props.onInput(this.state)
+        }
+    }
+
+    onToggle(e)
     {
         this.setState("checked", e.target.checked)
         
-        if (this.props.onChange)
+        if (this.props.onToggle)
         {
-            this.props.onChange(e.target.checked)
+            this.props.onToggle(this.state)
         }
+    }
+
+    onDelete(e)
+    {
+        this.unmount()
     }
 
     render()
@@ -27,13 +42,14 @@ export default class extends YARC.Component
         const inputProps =
         {
             type: "text",
+            input: e => this.onInput(e),
             value: this.state.value
         }
 
-        const checkboxProps =
+        const toggleProps =
         {
             type: "checkbox",
-            change: e => this.onChange(e)
+            input: e => this.onToggle(e)
         }
 
         if (this.state.checked)
@@ -41,17 +57,18 @@ export default class extends YARC.Component
             inputProps.readonly = true
             inputProps.style = "text-decoration:line-through"
 
-            checkboxProps.checked = true
+            toggleProps.checked = true
         }
 
         return h("li",
         [
             h("label",
             [
-                h("input", checkboxProps),
+                h("input", toggleProps),
                 h("span")
             ]),
-            h("input", inputProps)
+            h("input", inputProps),
+            h("span", { class: "delete", click: e => this.onDelete(e) })
         ]) 
     }
 }

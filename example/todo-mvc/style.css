@@ -7,10 +7,11 @@ body
 
     font-family: Helvetica, Arial, sans-serif;
 
-    padding: 1em;
+    padding: 2em;
     margin: 0 auto;
-}
 
+    background-color: #eee;
+}
 
 todos
 {
@@ -22,28 +23,44 @@ todos
 todos > h1
 {
     font-size: 4em;
-    margin-bottom: .5em;
+    margin-bottom: .25em;
 }
 
 todos > input[type=text]
 {
     width: 100%;
     padding: 1em;
-    border: 1px solid #999;
+    border: none;
     border-radius: 3px;
+
+    box-shadow: 0px 10px 20px rgba(0,0,0,.1);
+    margin-bottom: 2em;
 }
 
 todos > ul
 {
     list-style: none;
-    width: calc(100% - 1em);
+    width: 80%;
     margin: 0 auto;
+
+    box-shadow: 0px 10px 20px rgba(0,0,0,.1);
+    border-radius: .5em;
+    overflow: hidden;
 }
 
 todos > ul > li
 {
     display: block;
     position: relative;
+
+    /* background-image: linear-gradient(180deg, #fff 80%,#f9f9f9); */
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+todos > ul > li:last-child
+{
+    border-bottom: none;
 }
 
 todos > ul > li > label
@@ -55,8 +72,11 @@ todos > ul > li > label
     top: .5em;
     left: .5em;
     
-    border: 1px solid #000;
-    border-radius: 3px;
+    border-radius: 100%;
+    color: #06c;
+    border: 2px solid #06c;
+
+    cursor: pointer;
 }
 
 todos > ul > li > label > input[type="checkbox"]
@@ -70,41 +90,72 @@ todos > ul > li > label > span
     position: absolute;
     top: 50%;
     left: 50%;
-    content: " ";
     
-    font-size: .8em;
+    width: 0;
+    height: 0;
+
+    background-color: #06c;
+    border-radius: 100%;
     transform: translate(-50%,-50%);
+
+    transition: padding .1s;
 }
 
-todos > ul > li > label > span::before
+todos > ul > li > label > input[type="checkbox"]:checked + span
 {
-    content: " "
-}
-
-todos > ul > li > label > input[type="checkbox"]:checked + span::before
-{
-    content: "✓";
+    padding: .25em;
 }
 
 todos > ul > li > input[type=text]
 {
     width: 100%;
-    padding: .5em;
-    padding-left: 2.5em;
-    border-color: #999;
+    padding: 1em;
+    padding-left: 3em;
+    line-height: 1em;
+
+    border-color: #fff;
     border-style: solid;
     border-width: 1px;
-
     border-top-width: 0;
+
+    background-color: transparent;
+    color: #333;
 }
 
-todos > ul > li:first-child > input[type=text]
+todos > ul > li > input[type=text][readonly]
 {
-    /* border-radius: 3px 3px 0 0;
-    border-top-width: 1px; */
+    color: #999;
 }
 
-todos > ul > li:last-child > input[type=text]
+todos > ul > li > span.delete
 {
-    border-radius: 0 0 3px 3px;
+    width: 1em;
+    height: 1em;
+
+    position: absolute;
+    top: .5em;
+    right: .5em;
+
+    background-color: #999;
+    border-radius: 100%;
+
+    display: none;
+    cursor: pointer;
+}
+
+todos > ul > li > span.delete::before
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    content: "×";
+    
+    font-size: 1em;
+    color: #fff;
+    transform: translate(-50%,-50%);
+}
+
+todos > ul > li:hover > span.delete
+{
+    display: block;
 }

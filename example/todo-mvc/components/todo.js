@@ -1,5 +1,5 @@
 import YARC from "../../../lib/index.js"
-import Item from "./item.js"
+import Task from "./task.js"
 import Storage from "../util/storage.js"
 
 const h = YARC.createElement
@@ -10,46 +10,47 @@ export default class extends YARC.Component
     {
         super()
 
-        const items = Storage.get("items")
-
-        this.state.items = []
-
-        if (items)
-        {
-            items.forEach(item =>
-            {
-                item.onChange = checked => this.onItemChange(item, checked)
-                this.state.items.push(item)
-            })
-        }
-        
+        this.state.tasks = []
+        this.loadState("todo-mvc")
     }
 
-    onkeydown(e)
+    onInput(e)
     {
         if (e.keyCode != 13 || !e.target.value) return
 
-        const items = this.state.items
-        const item = { value: e.target.value }
+        const tasks = this.state.tasks
 
-        item.onChange = checked => this.onItemChange(item, checked)
-        items.push(item)
+        tasks.push({ value: e.target.value })
 
         e.target.value = ""
 
-        this.setState({ items })
-        this.save()
+        this.update()
+        this.saveState("todo-mvc")
     }
 
-    onItemChange(item, checked)
+    onTaskToggle(task, state)
     {
-        item.checked = checked
-        this.save()
+        task.checked = state.checked
+        this.saveState("todo-mvc")
     }
 
-    save()
+    onTaskInput(task, state)
     {
-        Storage.set("items", this.state.items)
+        task.value = state.value
+        this.saveState("todo-mvc")
+    }
+
+    onTaskDelete(task)
+    {
+        const index = this.state.tasks.indexOf(task)
+
+        console.log("foo")
+        if (index != -1)
+        {
+            this.state.tasks.splice(index,1)
+        }
+
+        this.saveState("todo-mvc")
     }
 
     render()
@@ -57,8 +58,20 @@ export default class extends YARC.Component
         return h("todos",
         [
             h("h1", ["todos"]),
-            h("input", { type: "text", placeholder: "What needs to be done?", keydown: e => this.onkeydown(e) }),
-            h("ul", this.state.items.map(item => new Item(item)))
+            h("input",
+            {
+                type: "text",
+                placeholder: "What needs to be done?",
+                keydown: e => this.onInput(e)
+            }),
+            h("ul", this.state.tasks.map(task =>
+            {
+                task.onInput = state => this.onTaskInput(task, state)
+                task.onToggle = state => this.onTaskToggle(task, state)
+                task.onUnmount = state => this.onTaskDelete(task)
+
+                return new Task(task)
+            }))
         ])
     }
 }
