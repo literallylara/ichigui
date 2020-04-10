@@ -5,7 +5,6 @@
     },
     "extends": "eslint:recommended",
     "globals": {
-        "GUI": "readonly"
     },
     "parserOptions": {
         "ecmaVersion": 2018,
