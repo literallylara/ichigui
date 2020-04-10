@@ -1,6 +1,5 @@
-import YARC from "../../../lib/index.js"
+import YARC from "../../../../lib/index.js"
 import Task from "./task.js"
-import Storage from "../util/storage.js"
 
 const h = YARC.createElement
 

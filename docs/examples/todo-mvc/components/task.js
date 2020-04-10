@@ -1,4 +1,4 @@
-import YARC from "../../../lib/index.js"
+import YARC from "../../../../lib/index.js"
 
 const h = YARC.createElement
 
