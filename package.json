@@ -1,9 +1,9 @@
 {
   "name": "yarc-js",
-  "version": "0.0.1-alpha.5",
+  "version": "0.0.1-alpha.6",
   "description": "Yet another react clone.",
   "main": "lib/index.js",
-  "browser": "dist/gui.min.js",
+  "browser": "dist/yarc.min.js",
   "scripts": {
     "jsdoc": "jsdoc -c jsdoc.config.json",
     "test": "echo \"Error: no test specified\" && exit 1"
