@@ -12,12 +12,12 @@ const banner = `/**!
  */`
 
 export default
-{
+[{
     input: "./lib/index.js",
     
     output:
     {
-        file: "./dist/yarc.min.js",
+        file: "./dist/yarc.min.es5.js",
         format: "iife",
         name: "YARC",
         banner
@@ -30,4 +30,19 @@ export default
         commonjs(),
         minify({ comments: false })
     ]
-}
+},{
+    input: "./lib/index.js",
+    
+    output:
+    {
+        file: "./dist/yarc.min.js",
+        format: "iife",
+        name: "YARC",
+        banner
+    },
+
+    plugins:
+    [
+        minify({ comments: false })
+    ]
+}]
