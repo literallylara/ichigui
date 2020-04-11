@@ -30,9 +30,12 @@ export default class extends YARC.Component
         }
     }
 
-    onDelete(e)
+    onDelete()
     {
-        this.unmount()
+        if (this.props.onDelete)
+        {
+            this.props.onDelete(this.state)
+        }
     }
 
     render()
@@ -66,7 +69,7 @@ export default class extends YARC.Component
                 h("span")
             ]),
             h("input", inputProps),
-            h("span", { class: "delete", click: e => this.onDelete(e) })
+            h("span", { class: "delete", click: () => this.onDelete() })
         ]) 
     }
 }

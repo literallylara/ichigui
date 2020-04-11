@@ -81,28 +81,29 @@ export default class extends YARC.Component
         this.save()
     }
 
-    onTaskDelete(task)
+    onTaskDelete(task, state)
     {
         const index = this.state.tasks.indexOf(task)
-
+ 
         if (index != -1)
         {
             this.state.tasks.splice(index,1)
         }
 
+        this.setState("tasks", this.state.tasks)
         this.save()
     }
 
     save()
     {
         this.setState("lastSaved", Date.now())
-        this.saveState("todo-mvc")
         this.updateLastSaved()
+
+        this.saveState("todo-mvc")
     }
 
     updateLastSaved()
     {
-        if (!this.state.lastSaved) return
         this.setState("lastSavedString", getDateString(this.state.lastSaved))
     }
 
@@ -121,7 +122,7 @@ export default class extends YARC.Component
             {
                 task.onInput = state => this.onTaskInput(task, state)
                 task.onToggle = state => this.onTaskToggle(task, state)
-                task.onUnmount = state => this.onTaskDelete(task)
+                task.onDelete = state => this.onTaskDelete(task, state)
 
                 return new Task(task)
             })),
