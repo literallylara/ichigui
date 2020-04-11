@@ -34,19 +34,24 @@ todos > input[type=text]
     width: 100%;
     padding: 1em;
     border: none;
-    border-radius: 3px;
+    border-radius: .5em;
 
     box-shadow: 0px 10px 20px rgba(0,0,0,.1);
-    margin-bottom: 2em;
+    position: relative;
+    z-index: 1;
 }
 
 todos > ul
 {
+    position: relative;
+    z-index: 0;
+
+    width: 90%;
     list-style: none;
     margin: 0 auto;
 
     box-shadow: 0px 10px 20px rgba(0,0,0,.1);
-    border-radius: .5em;
+    border-radius: 0 0 .5em .5em;
     overflow: hidden;
 }
 

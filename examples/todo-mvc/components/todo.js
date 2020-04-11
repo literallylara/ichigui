@@ -53,6 +53,10 @@ export default class extends YARC.Component
         this.updateLastSaved()
 
         window.setInterval(() => this.updateLastSaved(), 1000)
+
+        this.on("task:input", e => this.onTaskInput(e))
+        this.on("task:delete", e => this.onTaskDelete(e))
+        this.on("task:toggle", e => this.onTaskToggle(e))
     }
 
     onInput(e)
@@ -61,7 +65,7 @@ export default class extends YARC.Component
 
         const tasks = this.state.tasks
 
-        tasks.push({ value: e.target.value })
+        tasks.push({ key: tasks.length, value: e.target.value })
 
         e.target.value = ""
 
@@ -69,20 +73,27 @@ export default class extends YARC.Component
         this.save()
     }
 
-    onTaskToggle(task, state)
+    onTaskToggle(e)
     {
-        task.checked = state.checked
+        const task = this.state.tasks.find(v => v.key === e.target.props.key)
+
+        task.checked = e.data.checked
+
         this.save()
     }
 
-    onTaskInput(task, state)
+    onTaskInput(e)
     {
-        task.value = state.value
+        const task = this.state.tasks.find(v => v.key === e.target.props.key)
+
+        task.value = e.data.value
+
         this.save()
     }
 
-    onTaskDelete(task, state)
+    onTaskDelete(e)
     {
+        const task = this.state.tasks.find(v => v.key === e.target.props.key)
         const index = this.state.tasks.indexOf(task)
  
         if (index != -1)
@@ -104,6 +115,8 @@ export default class extends YARC.Component
 
     updateLastSaved()
     {
+        if (!this.state.lastSaved) return
+
         this.setState("lastSavedString", getDateString(this.state.lastSaved))
     }
 
@@ -118,14 +131,7 @@ export default class extends YARC.Component
                 placeholder: "What needs to be done?",
                 keydown: e => this.onInput(e)
             }),
-            h("ul", this.state.tasks.map(task =>
-            {
-                task.onInput = state => this.onTaskInput(task, state)
-                task.onToggle = state => this.onTaskToggle(task, state)
-                task.onDelete = state => this.onTaskDelete(task, state)
-
-                return new Task(task)
-            })),
+            h("ul", this.state.tasks.map(task => h(Task, task))),
             h("div", { class: "status" },
             [
                 this.state.lastSavedString

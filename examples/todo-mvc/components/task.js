@@ -13,29 +13,18 @@ export default class extends YARC.Component
     onInput(e)
     {
         this.setState("value", e.target.value)
-        
-        if (this.props.onInput)
-        {
-            this.props.onInput(this.state)
-        }
+        this.fire("task:input", this.state)
     }
 
     onToggle(e)
     {
         this.setState("checked", e.target.checked)
-        
-        if (this.props.onToggle)
-        {
-            this.props.onToggle(this.state)
-        }
+        this.fire("task:toggle", this.state)
     }
 
     onDelete()
     {
-        if (this.props.onDelete)
-        {
-            this.props.onDelete(this.state)
-        }
+        this.fire("task:delete", this.state)
     }
 
     render()
