@@ -17,3 +17,5 @@ Yet another react clone.
 ## Examples
 
 - [Todo MVC](https://literallylara.github.io/yarc-js/examples/todo-mvc/)
+
+![Screenshot](https://literallylara.github.io/yarc-js/examples/todo-mvc/screenshot.png)
