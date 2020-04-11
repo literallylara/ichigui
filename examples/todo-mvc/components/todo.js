@@ -2,6 +2,46 @@ import Task from "./task.js"
 
 const h = YARC.createElement
 
+function leftPadDigit(n)
+{
+    return n < 10 ? "0"+n : n
+}
+
+function getDateString(date)
+{
+    const d = (Date.now()-date)/1000
+
+    if (d < 5)
+    {
+        return "just now"
+    }
+    if (d < 60)
+    {
+        return Math.round(d) + " seconds ago"
+    }
+    else if (d < 60*60)
+    {
+        return Math.round(d/60) + " minutes ago"
+    }
+    else if (d < 60*60*12)
+    {
+        return Math.round(d/60/60) + " hours ago"
+    }
+    else
+    {
+        const d = new Date(date)
+    
+        const DD = d.getDate()
+        const MM = leftPadDigit(d.getMonth()+1)
+        const YY = leftPadDigit(d.getFullYear())
+        const hh = leftPadDigit(d.getHours())
+        const mm = leftPadDigit(d.getMinutes())
+        const ss = leftPadDigit(d.getSeconds())
+    
+        return `${YY}-${MM}-${DD} ${hh}:${mm}:${ss}`
+    }
+}
+
 export default class extends YARC.Component
 {
     constructor()
@@ -10,6 +50,9 @@ export default class extends YARC.Component
 
         this.state.tasks = []
         this.loadState("todo-mvc")
+        this.updateLastSaved()
+
+        window.setInterval(() => this.updateLastSaved(), 1000)
     }
 
     onInput(e)
@@ -23,32 +66,44 @@ export default class extends YARC.Component
         e.target.value = ""
 
         this.update()
-        this.saveState("todo-mvc")
+        this.save()
     }
 
     onTaskToggle(task, state)
     {
         task.checked = state.checked
-        this.saveState("todo-mvc")
+        this.save()
     }
 
     onTaskInput(task, state)
     {
         task.value = state.value
-        this.saveState("todo-mvc")
+        this.save()
     }
 
     onTaskDelete(task)
     {
         const index = this.state.tasks.indexOf(task)
 
-        console.log("foo")
         if (index != -1)
         {
             this.state.tasks.splice(index,1)
         }
 
+        this.save()
+    }
+
+    save()
+    {
+        this.setState("lastSaved", Date.now())
         this.saveState("todo-mvc")
+        this.updateLastSaved()
+    }
+
+    updateLastSaved()
+    {
+        if (!this.state.lastSaved) return
+        this.setState("lastSavedString", getDateString(this.state.lastSaved))
     }
 
     render()
@@ -69,7 +124,13 @@ export default class extends YARC.Component
                 task.onUnmount = state => this.onTaskDelete(task)
 
                 return new Task(task)
-            }))
+            })),
+            h("div", { class: "status" },
+            [
+                this.state.lastSavedString
+                ? `Saved: ${this.state.lastSavedString}`
+                : ""
+            ])
         ])
     }
 }
