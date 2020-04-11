@@ -1,6 +1,6 @@
 {
   "name": "yarc-js",
-  "version": "0.0.1-alpha.6",
+  "version": "0.0.1-alpha.7",
   "description": "Yet another react clone.",
   "main": "lib/index.js",
   "browser": "dist/yarc.min.js",
