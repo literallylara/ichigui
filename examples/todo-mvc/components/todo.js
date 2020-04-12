@@ -78,7 +78,7 @@ export default class extends YARC.Component
         })
 
         this.updateLastSaved()
-        this.saveState("todo-mvc")
+        this.saveState()
     }
 
     updateLastSaved()
