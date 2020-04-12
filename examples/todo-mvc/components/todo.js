@@ -92,21 +92,6 @@ export default class extends YARC.Component
 
     render()
     {
-        const tasks = this.state.tasks.map((props, i) =>
-        {
-            const task = new Task(props)
-
-            task.loadState()
-
-            task.onUnmount = () =>
-            {
-                this.state.tasks.splice(i, 1)
-                this.save()
-            }
-
-            return task
-        })
-
         return h("todos",
         [
             h("h1", ["todos"]),
@@ -116,7 +101,27 @@ export default class extends YARC.Component
                 placeholder: "What needs to be done?",
                 keydown: e => this.onInput(e)
             }),
-            h("ul", tasks),
+            h("ul", this.state.tasks.map((props, i) =>
+            {
+                return new Task(Object.assign(
+                {
+                    onDelete: () =>
+                    {
+                        this.state.tasks.splice(i, 1)
+                        this.save()
+                    },
+                    onInput: v =>
+                    {
+                        props.value = v
+                        this.save()
+                    },
+                    onToggle: v =>
+                    {
+                        props.checked = v
+                        this.save()
+                    }
+                }, props))
+            })),
             h("div", { class: "status" }, [this.state.lastSavedString || ""])
         ])
     }

@@ -5,60 +5,47 @@ export default class extends YARC.Component
     constructor(props)
     {
         super(props)
-
-        this.state.checked = props.checked
-        this.state.value = props.value
-    }
-
-    onInput(e)
-    {
-        this.setState("value", e.target.value)
-        this.saveState()
-    }
-
-    onToggle(e)
-    {
-        this.setState("checked", e.target.checked)
-        this.saveState()
-    }
-
-    onDelete()
-    {
-        this.unmount()
     }
 
     render()
     {
-        const inputProps =
-        {
-            type: "text",
-            input: e => this.onInput(e),
-            value: this.state.value
-        }
-
-        const toggleProps =
-        {
-            type: "checkbox",
-            input: e => this.onToggle(e)
-        }
-
-        if (this.state.checked)
-        {
-            inputProps.readonly = true
-            inputProps.style = "text-decoration:line-through"
-
-            toggleProps.checked = true
-        }
+        const checked = this.props.checked
 
         return h("li",
         [
             h("label",
             [
-                h("input", toggleProps),
+                h("input",
+                {
+                    type: "checkbox",
+                    input: e =>
+                    {
+                        this.props.onToggle && this.props.onToggle(e.target.checked)
+                    },
+                    checked: checked ? true : undefined,
+                }),
                 h("span")
             ]),
-            h("input", inputProps),
-            h("span", { class: "delete", click: () => this.onDelete() })
+            h("input",
+            {
+                type: "text",
+                input: e =>
+                {
+                    this.props.onInput && this.props.onInput(e.target.value)
+                },
+                value: this.props.value,
+                readonly: checked ? true : undefined,
+                style: checked ? "text-decoration:line-through": undefined
+            }),
+            h("span",
+            {
+                class: "delete",
+                click: () =>
+                {
+                    this.unmount()
+                    this.props.onDelete && this.props.onDelete()
+                }
+            })
         ]) 
     }
 }
