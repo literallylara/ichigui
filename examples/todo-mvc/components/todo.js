@@ -46,17 +46,13 @@ export default class extends YARC.Component
 {
     constructor()
     {
-        super()
+        super({ key: "todo-mvc" })
 
         this.state.tasks = []
-        this.loadState("todo-mvc")
+        this.loadState()
+
         this.updateLastSaved()
-
         window.setInterval(() => this.updateLastSaved(), 1000)
-
-        this.on("task:input", e => this.onTaskInput(e))
-        this.on("task:delete", e => this.onTaskDelete(e))
-        this.on("task:toggle", e => this.onTaskToggle(e))
     }
 
     onInput(e)
@@ -65,7 +61,7 @@ export default class extends YARC.Component
 
         const tasks = this.state.tasks
 
-        tasks.push({ key: tasks.length, value: e.target.value })
+        tasks.push({ key: YARC.uuid(), value: e.target.value })
 
         e.target.value = ""
 
@@ -73,43 +69,15 @@ export default class extends YARC.Component
         this.save()
     }
 
-    onTaskToggle(e)
-    {
-        const task = this.state.tasks.find(v => v.key === e.target.props.key)
-
-        task.checked = e.data.checked
-
-        this.save()
-    }
-
-    onTaskInput(e)
-    {
-        const task = this.state.tasks.find(v => v.key === e.target.props.key)
-
-        task.value = e.data.value
-
-        this.save()
-    }
-
-    onTaskDelete(e)
-    {
-        const task = this.state.tasks.find(v => v.key === e.target.props.key)
-        const index = this.state.tasks.indexOf(task)
- 
-        if (index != -1)
-        {
-            this.state.tasks.splice(index,1)
-        }
-
-        this.setState("tasks", this.state.tasks)
-        this.save()
-    }
-
     save()
     {
-        this.setState("lastSaved", Date.now())
-        this.updateLastSaved()
+        this.setState(
+        {
+            tasks: this.state.tasks,
+            lastSaved: Date.now()
+        })
 
+        this.updateLastSaved()
         this.saveState("todo-mvc")
     }
 
@@ -117,11 +85,28 @@ export default class extends YARC.Component
     {
         if (!this.state.lastSaved) return
 
-        this.setState("lastSavedString", getDateString(this.state.lastSaved))
+        const str = getDateString(this.state.lastSaved)
+
+        this.setState("lastSavedString", "Saved: " + str)
     }
 
     render()
     {
+        const tasks = this.state.tasks.map((props, i) =>
+        {
+            const task = new Task(props)
+
+            task.loadState()
+
+            task.onUnmount = () =>
+            {
+                this.state.tasks.splice(i, 1)
+                this.save()
+            }
+
+            return task
+        })
+
         return h("todos",
         [
             h("h1", ["todos"]),
@@ -131,13 +116,8 @@ export default class extends YARC.Component
                 placeholder: "What needs to be done?",
                 keydown: e => this.onInput(e)
             }),
-            h("ul", this.state.tasks.map(task => h(Task, task))),
-            h("div", { class: "status" },
-            [
-                this.state.lastSavedString
-                ? `Saved: ${this.state.lastSavedString}`
-                : ""
-            ])
+            h("ul", tasks),
+            h("div", { class: "status" }, [this.state.lastSavedString || ""])
         ])
     }
 }
