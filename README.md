@@ -11,6 +11,7 @@ Yet another react clone.
 ## ToDo
 
 - documentation
+- add support for [ShadowRoot](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot)
 - more examples
 - tests
 
