@@ -15,7 +15,7 @@ body
     background-color: #eee;
 }
 
-todos
+todo
 {
     width: 100%;
     max-width: 400px;
@@ -23,13 +23,13 @@ todos
     display: block;
 }
 
-todos > h1
+todo > h1
 {
     font-size: 4em;
     margin-bottom: .25em;
 }
 
-todos > input[type=text]
+todo > input[type=text]
 {
     width: 100%;
     padding: 1em;
@@ -41,7 +41,7 @@ todos > input[type=text]
     z-index: 1;
 }
 
-todos > ul
+todo > ul
 {
     position: relative;
     z-index: 0;
@@ -55,7 +55,7 @@ todos > ul
     overflow: hidden;
 }
 
-todos > ul > li
+todo > ul > li
 {
     display: block;
     position: relative;
@@ -65,12 +65,12 @@ todos > ul > li
     border-bottom: 1px solid #eee;
 }
 
-todos > ul > li:last-child
+todo > ul > li:last-child
 {
     border-bottom: none;
 }
 
-todos > ul > li > label
+todo > ul > li > label
 {
     width: 1em;
     height: 1em;
@@ -86,13 +86,13 @@ todos > ul > li > label
     cursor: pointer;
 }
 
-todos > ul > li > label > input[type="checkbox"]
+todo > ul > li > label > input[type="checkbox"]
 {
     width: 100%;
     display: none;
 }
 
-todos > ul > li > label > span
+todo > ul > li > label > span
 {
     position: absolute;
     top: 50%;
@@ -108,12 +108,12 @@ todos > ul > li > label > span
     transition: padding .1s;
 }
 
-todos > ul > li > label > input[type="checkbox"]:checked + span
+todo > ul > li > label > input[type="checkbox"]:checked + span
 {
     padding: .25em;
 }
 
-todos > ul > li > input[type=text]
+todo > ul > li > input[type=text]
 {
     width: 100%;
     padding: 1em;
@@ -129,12 +129,12 @@ todos > ul > li > input[type=text]
     color: #333;
 }
 
-todos > ul > li > input[type=text][readonly]
+todo > ul > li > input[type=text][readonly]
 {
     color: #999;
 }
 
-todos > ul > li > span.delete
+todo > ul > li > span.delete
 {
     width: 1em;
     height: 1em;
@@ -150,7 +150,7 @@ todos > ul > li > span.delete
     cursor: pointer;
 }
 
-todos > ul > li > span.delete::before
+todo > ul > li > span.delete::before
 {
     position: absolute;
     top: 50%;
@@ -162,12 +162,12 @@ todos > ul > li > span.delete::before
     transform: translate(-50%,-50%);
 }
 
-todos > ul > li:hover > span.delete
+todo > ul > li:hover > span.delete
 {
     display: block;
 }
 
-todos > .status
+todo > .status
 {
     padding: 1em;
     font-size: .8em;

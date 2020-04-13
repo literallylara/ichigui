@@ -1,6 +1,6 @@
 const h = YARC.createElement
 
-export default class extends YARC.Component
+export default class Task extends YARC.Component
 {
     constructor(props)
     {

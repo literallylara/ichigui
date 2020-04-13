@@ -42,7 +42,7 @@ function getDateString(date)
     }
 }
 
-export default class extends YARC.Component
+export default class ToDo extends YARC.Component
 {
     constructor()
     {
@@ -92,7 +92,7 @@ export default class extends YARC.Component
 
     render()
     {
-        return h("todos",
+        return h("todo",
         [
             h("h1", ["todos"]),
             h("input",
