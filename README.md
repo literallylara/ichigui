@@ -20,3 +20,7 @@ Yet another react clone.
 - [Todo MVC](https://literallylara.github.io/yarc-js/examples/todo-mvc/)
 
 ![Screenshot](https://literallylara.github.io/yarc-js/examples/todo-mvc/screenshot.png)
+
+- [TicTacToe](https://literallylara.github.io/yarc-js/examples/tic-tac-toe/)
+
+![Screenshot](https://literallylara.github.io/yarc-js/examples/tic-tac-toe/screenshot.png)
