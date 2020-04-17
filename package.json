@@ -1,16 +1,16 @@
 {
-  "name": "yarc-js",
+  "name": "ichigui",
   "version": "0.0.1-alpha.10",
-  "description": "Yet another react clone.",
+  "description": "A lightweight web component framework.",
   "main": "lib/index.js",
-  "browser": "dist/yarc.min.js",
+  "browser": "dist/ichigui.min.js",
   "scripts": {
     "jsdoc": "jsdoc -c jsdoc.config.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/literallylara/yarc-js.git"
+    "url": "git+https://github.com/literallylara/ichigui.git"
   },
   "keywords": [
     "gui",
@@ -25,9 +25,9 @@
   "author": "@literallylara",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/literallylara/yarc-js/issues"
+    "url": "https://github.com/literallylara/ichigui/issues"
   },
-  "homepage": "https://github.com/literallylara/yarc-js#readme",
+  "homepage": "https://github.com/literallylara/ichigui#readme",
   "devDependencies": {
     "@babel/core": "^7.8.3",
     "@babel/preset-env": "^7.8.3",

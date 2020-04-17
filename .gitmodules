@@ -1,4 +1,4 @@
 [submodule "gh-pages"]
 	path = gh-pages
-	url = https://github.com/literallylara/yarc-js.git
+	url = https://github.com/literallylara/ichigui.git
 	branch = gh-pages

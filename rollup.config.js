@@ -17,9 +17,9 @@ export default
     
     output:
     {
-        file: "./dist/yarc.min.es5.js",
+        file: `./dist/${pkg.name}.min.es5.js`,
         format: "iife",
-        name: "YARC",
+        name: "IG",
         banner
     },
 
@@ -35,9 +35,9 @@ export default
     
     output:
     {
-        file: "./dist/yarc.min.js",
+        file: `./dist/${pkg.name}.min.js`,
         format: "iife",
-        name: "YARC",
+        name: "IG",
         banner
     },
 
