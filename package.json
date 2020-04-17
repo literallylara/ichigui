@@ -1,6 +1,6 @@
 {
   "name": "ichigui",
-  "version": "0.0.1-alpha.10",
+  "version": "0.0.1-alpha.11",
   "description": "A lightweight web component framework.",
   "main": "lib/index.js",
   "browser": "dist/ichigui.min.js",
