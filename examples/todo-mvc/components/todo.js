@@ -68,8 +68,8 @@ export default class ToDo extends IG.Component
 
         e.target.value = ""
 
-        this.save()
         this.updateTasks()
+        this.save()
     }
 
     updateTasks(index)
