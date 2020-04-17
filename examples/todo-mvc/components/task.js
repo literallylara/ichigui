@@ -11,7 +11,7 @@ export default class Task extends IG.Component
     {
         const checked = this.props.checked
 
-        return h("li",
+        return h("li", { key: this.props.key },
         [
             h("label",
             [
@@ -42,7 +42,6 @@ export default class Task extends IG.Component
                 class: "delete",
                 click: () =>
                 {
-                    this.unmount()
                     this.props.onDelete && this.props.onDelete()
                 }
             })

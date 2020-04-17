@@ -51,7 +51,10 @@ export default class ToDo extends IG.Component
         this.state.tasks = []
         this.loadState()
 
+        this.updateTasks()
         this.updateLastSaved()
+        this.onInput = this.onInput.bind(this)
+
         window.setInterval(() => this.updateLastSaved(), 1000)
     }
 
@@ -65,8 +68,37 @@ export default class ToDo extends IG.Component
 
         e.target.value = ""
 
-        this.update()
         this.save()
+        this.updateTasks()
+    }
+
+    updateTasks(index)
+    {
+        this.tasks = this.state.tasks.map((props, i) =>
+        {
+            return new Task(Object.assign(
+            {
+                key: props.key,
+                
+                onDelete: () =>
+                {
+                    this.state.tasks.splice(i, 1)
+                    this.updateTasks()
+                    this.save()
+                },
+                onInput: v =>
+                {
+                    props.value = v
+                    this.save()
+                },
+                onToggle: v =>
+                {
+                    props.checked = v
+                    this.updateTasks()
+                    this.save()
+                }
+            }, props)).render()
+        })
     }
 
     save()
@@ -99,29 +131,9 @@ export default class ToDo extends IG.Component
             {
                 type: "text",
                 placeholder: "What needs to be done?",
-                keydown: e => this.onInput(e)
+                keydown: this.onInput
             }),
-            h("ul", this.state.tasks.map((props, i) =>
-            {
-                return new Task(Object.assign(
-                {
-                    onDelete: () =>
-                    {
-                        this.state.tasks.splice(i, 1)
-                        this.save()
-                    },
-                    onInput: v =>
-                    {
-                        props.value = v
-                        this.save()
-                    },
-                    onToggle: v =>
-                    {
-                        props.checked = v
-                        this.save()
-                    }
-                }, props))
-            })),
+            h("ul", this.tasks),
             h("div", { class: "status" }, [this.state.lastSavedString || ""])
         ])
     }

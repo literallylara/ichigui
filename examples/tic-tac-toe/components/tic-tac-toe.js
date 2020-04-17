@@ -11,11 +11,8 @@ export default class TicTacToe extends IG.Component
 
     onBeforeMount()
     {
-        this.setState(
-        {
-            fieldState: [],
-            xIsNext: Math.random() > 0.5
-        })
+        this.state.fieldState = []
+        this.state.xIsNext = Math.random() > 0.5
 
         this.loadState()
 
@@ -46,13 +43,16 @@ export default class TicTacToe extends IG.Component
 
         if (s.filter(v => v).length == 9) return "draw"
     }
+
+    onSetState()
+    {
+        this.saveState()
+    }
     
     render()
     {
         const winner = this.checkWinner()
         const rows = []
-
-        this.saveState()
 
         for (let y = 0; y < 3; y++)
         {
