@@ -1,6 +1,6 @@
-const h = YARC.createElement
+const h = IG.createElement
 
-export default class Field extends YARC.Component
+export default class Field extends IG.Component
 {
     constructor(props)
     {

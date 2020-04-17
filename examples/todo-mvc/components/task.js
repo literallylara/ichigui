@@ -1,6 +1,6 @@
-const h = YARC.createElement
+const h = IG.createElement
 
-export default class Task extends YARC.Component
+export default class Task extends IG.Component
 {
     constructor(props)
     {

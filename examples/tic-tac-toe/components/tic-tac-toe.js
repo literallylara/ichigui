@@ -1,8 +1,8 @@
 import Field from "./field.js"
 
-const h = YARC.createElement
+const h = IG.createElement
 
-export default class TicTacToe extends YARC.Component
+export default class TicTacToe extends IG.Component
 {
     constructor()
     {

@@ -1,6 +1,6 @@
 import Task from "./task.js"
 
-const h = YARC.createElement
+const h = IG.createElement
 
 function leftPadDigit(n)
 {
@@ -42,7 +42,7 @@ function getDateString(date)
     }
 }
 
-export default class ToDo extends YARC.Component
+export default class ToDo extends IG.Component
 {
     constructor()
     {
@@ -61,7 +61,7 @@ export default class ToDo extends YARC.Component
 
         const tasks = this.state.tasks
 
-        tasks.push({ key: YARC.uuid(), value: e.target.value })
+        tasks.push({ key: IG.uuid(), value: e.target.value })
 
         e.target.value = ""
 
