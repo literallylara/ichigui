@@ -17,10 +17,14 @@ A lightweight web component framework.
 
 ## Examples
 
-- [Todo MVC](https://literallylara.github.io/ichigui/examples/todo-mvc/)
+### [Smart Patching](https://literallylara.github.io/ichigui/examples/smart-patching/)
 
-![Screenshot](https://literallylara.github.io/ichigui/examples/todo-mvc/screenshot.png)
+<img alt="Smart Patching" src="https://literallylara.github.io/ichigui/examples/smart-patching/screenshot.PNG" width="500">
 
-- [TicTacToe](https://literallylara.github.io/ichigui/examples/tic-tac-toe/)
+### [Todo MVC](https://literallylara.github.io/ichigui/examples/todo-mvc/)
 
-![Screenshot](https://literallylara.github.io/ichigui/examples/tic-tac-toe/screenshot.png)
+<img alt="Screenshot" src="https://literallylara.github.io/ichigui/examples/todo-mvc/screenshot.png" width="500">
+
+### [TicTacToe](https://literallylara.github.io/ichigui/examples/tic-tac-toe/)
+
+<img alt="Screenshot" src="https://literallylara.github.io/ichigui/examples/tic-tac-toe/screenshot.png" width="500">
