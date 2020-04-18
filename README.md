@@ -8,12 +8,15 @@ A lightweight web component framework.
 
 `npm install ichigui --save-dev`
 
+**Warning:** This framework is still in the alpha stage and not meant for production as it may contain bugs and unoptimized code.
+
 ## ToDo
 
-- documentation
-- add support for [ShadowRoot](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot)
-- more examples
-- tests
+- Documentation
+- Support for [ShadowRoot](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot)
+- Support for [DocumentFragment](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment)
+- Unit tests
+- More complex examples
 
 ## Examples
 
